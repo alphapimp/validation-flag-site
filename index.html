@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation de Flag</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+        }
+    </style>
+    <script>
+        function verifierFlag() {
+            const flagInput = document.getElementById('flag').value;
+            const correctFlag = "j'adore le rally";
+
+            if (flagInput === correctFlag) {
+                document.getElementById('message').textContent = "Validation réussie. Redirection en cours...";
+                document.getElementById('message').style.color = "green";
+                setTimeout(() => {
+                    window.location.href = "https://www.kodub.com/apps/polytrack";
+                }, 2000);
+            } else {
+                document.getElementById('message').textContent = "Flag incorrect. Réessayez.";
+                document.getElementById('message').style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Validation de Flag</h1>
+    <p>Entrez le flag pour valider :</p>
+    <input type="text" id="flag" placeholder="Entrez votre flag ici">
+    <button onclick="verifierFlag()">Valider</button>
+    <p class="message" id="message"></p>
+</body>
+</html>
