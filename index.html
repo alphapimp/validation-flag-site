@@ -27,7 +27,7 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;">  <!-- bloque le clic droit -->
+<body oncontextmenu="return false;"> <!-- Désactive le menu contextuel (clic droit) -->
     <h1>Validation de Flag</h1>
     <p>Entrez le flag pour valider :</p>
     <input type="text" id="flag" placeholder="Entrez votre flag ici">
@@ -35,33 +35,33 @@
     <p class="message" id="message"></p>
 
     <script>
-        // Bloque Ctrl+U, F12 et Ctrl+Shift+I
-        document.onkeydown = function(e) {
-            // Empêche Ctrl+U
+        // Empêche certains raccourcis pour limiter l’accès à l’inspecteur
+        document.addEventListener('keydown', function(e) {
+            // Bloque Ctrl + U (affichage du code source)
             if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
                 e.preventDefault();
             }
-            // Empêche F12 (touche 123)
-            if (e.keyCode === 123) { 
+            // Bloque la touche F12 (keyCode 123)
+            if (e.keyCode === 123) {
                 e.preventDefault();
             }
-            // Empêche Ctrl+Shift+I
+            // Bloque Ctrl + Shift + I (ou Ctrl+Alt+I selon le navigateur)
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
                 e.preventDefault();
             }
-        };
+        });
 
-        // Exemple d’ofuscation du flag via base64
+        // Exemple d’obfuscation : le flag est encodé en base64
         function decoderFlag() {
-            // Valeur encodée en base64 de "J'adore faire du rallye"
+            // Chaîne encodée en base64 correspondant à "J'adore faire du rallye"
             return atob("SidBZGFkb3JlIGZhaXJlIGR1IHJhbGxleQ==");
         }
 
         function verifierFlag() {
-            const flagInput = document.getElementById('flag').value;
-            const correctFlag = decoderFlag();
+            const flagSaisi = document.getElementById('flag').value;
+            const flagCorrect = decoderFlag();
 
-            if (flagInput === correctFlag) {
+            if (flagSaisi === flagCorrect) {
                 document.getElementById('message').textContent = "Validation réussie. Redirection en cours...";
                 document.getElementById('message').style.color = "green";
                 setTimeout(() => {
